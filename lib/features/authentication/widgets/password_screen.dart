@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/features/authentication/widgets/birthday_screen.dart';
 
 import 'form_button.dart';
 
@@ -16,6 +17,8 @@ class _PasswordScreenState extends State<PasswordScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   String _password = "";
+
+  bool _obscureText = true;
 
   @override
   void initState() {
@@ -34,14 +37,8 @@ class _PasswordScreenState extends State<PasswordScreen> {
     super.dispose();
   }
 
-  String? _isPasswordValid() {
-    if (_password.isEmpty) return null;
-    final regExp = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-    if (!regExp.hasMatch(_password)) {
-      return "Not valid";
-    }
-    return null;
+  bool _isPasswordValid() {
+    return _password.isNotEmpty && _password.length >= 8;
   }
 
   void _onScaffoldTap() {
@@ -49,13 +46,22 @@ class _PasswordScreenState extends State<PasswordScreen> {
   }
 
   void _onSubmit() {
-    if (_password.isEmpty || _isPasswordValid() != null) return;
+    if (!_isPasswordValid()) return;
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const PasswordScreen(),
+        builder: (context) => const BirthdayScreen(),
       ),
     );
+  }
+
+  void _clearOnTap() {
+    _passwordController.clear();
+  }
+
+  void _toggleObscureText() {
+    _obscureText = !_obscureText;
+    setState(() {});
   }
 
   @override
@@ -85,16 +91,33 @@ class _PasswordScreenState extends State<PasswordScreen> {
               Gaps.v16,
               TextField(
                 controller: _passwordController,
+                obscureText: _obscureText,
                 onEditingComplete: _onSubmit,
                 decoration: InputDecoration(
-                  suffixIcon: const Row(
+                  suffixIcon: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      FaIcon(FontAwesomeIcons.circleXmark),
-                      Gaps.h5,
-                      FaIcon(FontAwesomeIcons.eye),
+                      GestureDetector(
+                        onTap: _clearOnTap,
+                        child: FaIcon(
+                          FontAwesomeIcons.solidCircleXmark,
+                          color: Colors.grey.shade500,
+                          size: Sizes.size20,
+                        ),
+                      ),
+                      Gaps.h14,
+                      GestureDetector(
+                        onTap: _toggleObscureText,
+                        child: FaIcon(
+                          _obscureText
+                              ? FontAwesomeIcons.eyeSlash
+                              : FontAwesomeIcons.eye,
+                          color: Colors.grey.shade500,
+                          size: Sizes.size20,
+                        ),
+                      ),
                     ],
                   ),
-                  errorText: _isPasswordValid(),
                   hintText: "Make it strong!",
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey.shade400),
@@ -105,11 +128,34 @@ class _PasswordScreenState extends State<PasswordScreen> {
                 ),
                 cursorColor: Theme.of(context).primaryColor,
               ),
-              Gaps.v16,
+              Gaps.v20,
+              const Text(
+                'Your password must have:',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: Sizes.size14,
+                ),
+              ),
+              Gaps.v14,
+              Row(
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.circleCheck,
+                    size: Sizes.size16,
+                    color: _isPasswordValid()
+                        ? Colors.green
+                        : Colors.grey.shade400,
+                  ),
+                  Gaps.h5,
+                  const Text("8 to 20 characters"),
+                ],
+              ),
+              Gaps.v24,
               GestureDetector(
                 onTap: _onSubmit,
                 child: FormButton(
-                    disabled: _password.isEmpty || _isPasswordValid() != null),
+                  disabled: !_isPasswordValid(),
+                ),
               ),
             ],
           ),
