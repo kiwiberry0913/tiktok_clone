@@ -11,18 +11,18 @@ class ChatDetailScreen extends StatefulWidget {
 }
 
 class _ChatDetailScreenState extends State<ChatDetailScreen> {
-  bool _isWriting = false;
+  bool isWriting = false;
 
   void _onStartWriting() {
     setState(() {
-      _isWriting = true;
+      isWriting = true;
     });
   }
 
   void _closeKeyboard() {
     FocusScope.of(context).unfocus();
     setState(() {
-      _isWriting = false;
+      isWriting = false;
     });
   }
 
@@ -30,21 +30,41 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const ListTile(
+        title: ListTile(
           contentPadding: EdgeInsets.zero,
           horizontalTitleGap: Sizes.size8,
-          leading: CircleAvatar(
-            radius: Sizes.size24,
-            foregroundImage: NetworkImage(
-                "https://images.unsplash.com/photo-1691772916944-e82cb4865791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80"),
-            child: Text('Keri'),
+          leading: Stack(
+            children: [
+              const CircleAvatar(
+                radius: Sizes.size24,
+                foregroundImage: NetworkImage(
+                    "https://images.unsplash.com/photo-1691772916944-e82cb4865791?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80"),
+                child: Text('Keri'),
+              ),
+              Positioned(
+                left: 30,
+                top: 30,
+                child: Container(
+                  height: Sizes.size20,
+                  width: Sizes.size20,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.lightGreen,
+                    border: Border.all(
+                        color: Colors.white,
+                        style: BorderStyle.solid,
+                        width: 3.0),
+                  ),
+                ),
+              ),
+            ],
           ),
-          title: Text(
+          title: const Text(
             "Keri",
             style: TextStyle(fontWeight: FontWeight.w600),
           ),
-          subtitle: Text("Active now"),
-          trailing: Row(
+          subtitle: const Text("Active now"),
+          trailing: const Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               FaIcon(
