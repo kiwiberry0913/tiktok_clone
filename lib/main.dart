@@ -43,6 +43,9 @@ class TikTokApp extends StatelessWidget {
           ),
         ),
       ),
+      darkTheme: ThemeData(
+        scaffoldBackgroundColor: Colors.black,
+      ),
       home: const SignUpScreen(),
     );
   }
