@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/widgets/password_screen.dart';
+import 'package:tiktok_clone/utilities.dart';
 
 import 'form_button.dart';
 
@@ -63,7 +64,7 @@ class _EmailScreenState extends State<EmailScreen> {
     return GestureDetector(
       onTap: _onScaffoldTap,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: isDarkMode(context) ? null : Colors.white,
         appBar: AppBar(
           title: const Text(
             "Sign up",

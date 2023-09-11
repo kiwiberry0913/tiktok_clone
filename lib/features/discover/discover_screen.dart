@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tiktok_clone/constants/breakpoints.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
+import 'package:tiktok_clone/utilities.dart';
 
 final tabs = [
   "Top",
@@ -53,6 +54,9 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
               controller: _textEditingController,
               onChanged: _onSearchChanged,
               onSubmitted: _onSearchSubmitted,
+              style: TextStyle(
+                color: isDarkMode(context) ? Colors.white : Colors.black,
+              ),
             ),
           ),
           bottom: TabBar(
@@ -61,9 +65,7 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
             isScrollable: true,
             labelStyle: const TextStyle(
                 fontWeight: FontWeight.w600, fontSize: Sizes.size16),
-            indicatorColor: Colors.black,
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.grey.shade500,
+            indicatorColor: Theme.of(context).tabBarTheme.indicatorColor,
             tabs: [
               for (var tab in tabs)
                 Tab(
@@ -115,43 +117,44 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       ),
                     ),
                     Gaps.v5,
-                    if (constraints.maxWidth < 190 ||
-                        constraints.maxWidth > 250)
-                      DefaultTextStyle(
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey.shade600,
-                        ),
-                        child: Row(
-                          children: [
-                            const CircleAvatar(
-                              radius: 12,
-                              backgroundImage: NetworkImage(
-                                "https://images.unsplash.com/photo-1688469625738-d8297c2c1288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80",
-                              ),
+                    //if (constraints.maxWidth < 190 || constraints.maxWidth > 250)
+                    DefaultTextStyle(
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: isDarkMode(context)
+                            ? Colors.grey.shade300
+                            : Colors.grey.shade600,
+                      ),
+                      child: Row(
+                        children: [
+                          const CircleAvatar(
+                            radius: 12,
+                            backgroundImage: NetworkImage(
+                              "https://images.unsplash.com/photo-1688469625738-d8297c2c1288?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80",
                             ),
-                            Gaps.h10,
-                            const Expanded(
-                              child: Text(
-                                "Ihavethelongestusernameever_followme",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
+                          ),
+                          Gaps.h10,
+                          const Expanded(
+                            child: Text(
+                              "Ihavethelongestusernameever_followme",
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            Gaps.h4,
-                            FaIcon(
-                              FontAwesomeIcons.heart,
-                              size: Sizes.size16,
-                              color: Colors.grey.shade600,
-                            ),
-                            Gaps.h2,
-                            const Text(
-                              "2.5M",
-                              style: TextStyle(fontSize: Sizes.size14),
-                            ),
-                          ],
-                        ),
-                      )
+                          ),
+                          Gaps.h4,
+                          FaIcon(
+                            FontAwesomeIcons.heart,
+                            size: Sizes.size16,
+                            color: Colors.grey.shade600,
+                          ),
+                          Gaps.h2,
+                          const Text(
+                            "2.5M",
+                            style: TextStyle(fontSize: Sizes.size14),
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),

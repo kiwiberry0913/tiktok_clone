@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone/utilities.dart';
 
 enum Direction { right, left }
 
@@ -62,11 +63,11 @@ class _TutorialScreenState extends State<TutorialScreen> {
           padding: const EdgeInsets.symmetric(horizontal: Sizes.size24),
           child: SafeArea(
             child: AnimatedCrossFade(
-              firstChild: const Column(
+              firstChild: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gaps.v80,
-                  Text(
+                  const Text(
                     "Watch cool videos",
                     style: TextStyle(
                       fontSize: Sizes.size40,
@@ -78,16 +79,16 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     "Videos are personalized for you based on what you watch, like, and share.",
                     style: TextStyle(
                       fontSize: Sizes.size24,
-                      color: Colors.black38,
+                      color: isDarkMode(context) ? null : Colors.black38,
                     ),
                   ),
                 ],
               ),
-              secondChild: const Column(
+              secondChild: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Gaps.v80,
-                  Text(
+                  const Text(
                     "Follow the rules",
                     style: TextStyle(
                       fontSize: Sizes.size40,
@@ -99,7 +100,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                     "Treat others the way you would like to be treated, please!",
                     style: TextStyle(
                       fontSize: Sizes.size24,
-                      color: Colors.black38,
+                      color: isDarkMode(context) ? null : Colors.black38,
                     ),
                   ),
                 ],
@@ -112,6 +113,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
           ),
         ),
         bottomNavigationBar: BottomAppBar(
+          color: isDarkMode(context) ? Colors.black : Colors.white,
           child: Padding(
             padding: const EdgeInsets.symmetric(
               vertical: Sizes.size24,
