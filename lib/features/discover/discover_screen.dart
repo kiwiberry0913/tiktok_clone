@@ -107,13 +107,14 @@ class _DiscoverScreenState extends State<DiscoverScreen> {
                       ),
                     ),
                     Gaps.v8,
-                    Text(
-                      "${constraints.maxWidth} is a long caption so that I can figure out how to make a dot dot dot",
+                    const Text(
+                      "This is a long caption so that I can figure out how to make a dot dot dot",
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: Sizes.size16 + Sizes.size2,
                         fontWeight: FontWeight.bold,
+                        height: 1.2,
                       ),
                     ),
                     Gaps.v5,

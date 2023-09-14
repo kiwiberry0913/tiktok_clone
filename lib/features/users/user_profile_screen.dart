@@ -77,7 +77,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           ),
                         ],
                       ),
-                      Gaps.v20,
+                      Gaps.v24,
                       SizedBox(
                         height: Sizes.size48,
                         child: Row(
@@ -92,7 +92,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     fontSize: Sizes.size18,
                                   ),
                                 ),
-                                Gaps.v3,
+                                Gaps.v1,
                                 Text(
                                   "Following",
                                   style: TextStyle(
@@ -117,7 +117,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     fontSize: Sizes.size18,
                                   ),
                                 ),
-                                Gaps.v3,
+                                Gaps.v1,
                                 Text(
                                   "Followers",
                                   style: TextStyle(
@@ -142,7 +142,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     fontSize: Sizes.size18,
                                   ),
                                 ),
-                                Gaps.v3,
+                                Gaps.v1,
                                 Text(
                                   "Likes",
                                   style: TextStyle(
@@ -164,7 +164,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           decoration: BoxDecoration(
                             color: Theme.of(context).primaryColor,
                             borderRadius: const BorderRadius.all(
-                              Radius.circular(5),
+                              Radius.circular(Sizes.size4),
                             ),
                           ),
                           child: const Text(
@@ -187,7 +187,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      Gaps.v20,
+                      Gaps.v14,
                       const Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -195,7 +195,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             FontAwesomeIcons.link,
                             size: Sizes.size12,
                           ),
-                          Gaps.h5,
+                          Gaps.h4,
                           Text(
                             "https://www.codedecaf.com",
                             style: TextStyle(
@@ -225,12 +225,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     crossAxisCount: 3,
                     crossAxisSpacing: Sizes.size2,
                     mainAxisSpacing: Sizes.size2,
-                    childAspectRatio: 11 / 14,
+                    childAspectRatio: 9 / 14,
                   ),
                   itemBuilder: (context, index) => Column(
                     children: [
                       AspectRatio(
-                        aspectRatio: 11 / 14,
+                        aspectRatio: 9 / 14,
                         child: FadeInImage.assetNetwork(
                           fit: BoxFit.cover,
                           placeholder: "assets/photos/placeholder.jpg",
