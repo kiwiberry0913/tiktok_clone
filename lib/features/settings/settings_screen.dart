@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -49,10 +50,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 firstDate: DateTime(1980),
                 lastDate: DateTime(2030),
               );
+              if (kDebugMode) {
+                print(date);
+              }
+              if (!mounted) return;
               final time = await showTimePicker(
                 context: context,
                 initialTime: TimeOfDay.now(),
               );
+              if (kDebugMode) {
+                print(time);
+              }
+              if (!mounted) return;
               final booking = await showDateRangePicker(
                 context: context,
                 firstDate: DateTime(1980),
@@ -68,6 +77,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: child!);
                 },
               );
+              if (kDebugMode) {
+                print(booking);
+              }
             },
             title: const Text("When is your birthday?"),
             subtitle: const Text("I need to know!"),
