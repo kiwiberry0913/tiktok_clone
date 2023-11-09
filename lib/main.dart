@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
-import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:tiktok_clone/features/authentication/login_screen.dart';
+import 'package:tiktok_clone/features/authentication/sign_up_screen.dart';
+import 'package:tiktok_clone/features/authentication/widgets/email_screen.dart';
+import 'package:tiktok_clone/features/authentication/widgets/username_screen.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 
 void main() async {
@@ -23,7 +26,7 @@ class TikTokApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    S.load(const Locale("ko"));
+    //S.load(const Locale("ko"));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
@@ -104,7 +107,13 @@ class TikTokApp extends StatelessWidget {
         primaryColor: const Color(0xFFe9435a),
         brightness: Brightness.dark,
       ),
-      home: const SignUpScreen(),
+      initialRoute: SignUpScreen.routeName,
+      routes: {
+        SignUpScreen.routeName: (context) => const SignUpScreen(),
+        UsernameScreen.routeName: (context) => const UsernameScreen(),
+        LoginScreen.routeName: (context) => const LoginScreen(),
+        EmailScreen.routeName: (context) => const EmailScreen()
+      },
     );
   }
 }

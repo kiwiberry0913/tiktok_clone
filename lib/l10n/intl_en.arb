@@ -1,11 +1,15 @@
 {
-  "signUpTitle": "Sign up for {nameOfTheApp}",
+  "signUpTitle": "Sign up for {nameOfTheApp} {when}",
   "@signUpTitle": {
     "description": "The title people see when they open the app for the first time.",
     "placeholders": {
       "nameOfTheApp": {
         "type": "String",
-        "example": "TikTok"
+        "example": "TikTok" 
+      },
+    "when": {
+      "type":"DateTime",
+      "format": "y"
       }
     }
   },
@@ -23,5 +27,35 @@
   "emailPasswordButton": "Use email and password",
   "signInAppleButton": "Continue with Apple",
   "alreadyHaveAnAccount": "Already have an account?",
-  "logIn": "Log in"
+  "logIn": "Log in",
+  "likeCount": "{value}",
+  "@likeCount": {
+    "description": "number of likes a video has recevied",
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "commentCount": "{value}",
+  "@commentCount": {
+    "description": "number of comments a video has recevied",
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  },
+  "numberOfCommentsHeader": "{value}",
+  "@numberOfCommentsHeader": {
+    "description": "header for number of comments in comments tab",
+    "placeholders": {
+      "value": {
+        "type": "int",
+        "format": "compact"
+      }
+    }
+  }
 }
