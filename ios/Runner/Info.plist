@@ -51,5 +51,7 @@
 	<string>TikTok would like to access your camera.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>TikTok would like to access your microphone.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>TikTok Clone would like to access your photos library.</string>
 </dict>
 </plist>
