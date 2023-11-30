@@ -1,10 +1,11 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '11.0'
+platform :ios, '15.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 
 project 'Runner', {
+
   'Debug' => :debug,
   'Profile' => :release,
   'Release' => :release,
@@ -30,12 +31,16 @@ flutter_ios_podfile_setup
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
+  
+
 
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
   target 'RunnerTests' do
     inherit! :search_paths
   end
 end
+
+
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -44,6 +49,10 @@ post_install do |installer|
     # Start of the permission_handler configuration
     target.build_configurations.each do |config|
       config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.0'
+      xcconfig_path = config.base_configuration_reference.real_path
+      xcconfig = File.read(xcconfig_path)
+      xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+      File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
 
       # You can enable the permissions needed here. For example to enable camera
       # permission, just remove the `#` character in front so it looks like this:
@@ -97,6 +106,8 @@ post_install do |installer|
         ## dart: PermissionGroup.criticalAlerts
         # 'PERMISSION_CRITICAL_ALERTS=1'
       ]
+
+
     end
   end
 end
