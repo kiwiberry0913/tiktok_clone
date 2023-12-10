@@ -52,6 +52,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '1051041039104',
     projectId: 'tiktok-tiktok-clone',
     authDomain: 'tiktok-tiktok-clone.firebaseapp.com',
+    databaseURL: 'https://tiktok-tiktok-clone-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'tiktok-tiktok-clone.appspot.com',
   );
 
@@ -60,6 +61,7 @@ class DefaultFirebaseOptions {
     appId: '1:1051041039104:android:ef8a41b3922db13ca529e5',
     messagingSenderId: '1051041039104',
     projectId: 'tiktok-tiktok-clone',
+    databaseURL: 'https://tiktok-tiktok-clone-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'tiktok-tiktok-clone.appspot.com',
   );
 
@@ -68,6 +70,7 @@ class DefaultFirebaseOptions {
     appId: '1:1051041039104:ios:7907937d4097b5aaa529e5',
     messagingSenderId: '1051041039104',
     projectId: 'tiktok-tiktok-clone',
+    databaseURL: 'https://tiktok-tiktok-clone-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'tiktok-tiktok-clone.appspot.com',
     iosBundleId: 'co.flutter.tiktokclone',
   );

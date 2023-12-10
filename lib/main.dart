@@ -16,7 +16,7 @@ void main() async {
 
 // initializes Firebase in this app
   await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform, name: "TikTok");
+      options: DefaultFirebaseOptions.currentPlatform, name: "tiktok_clone");
 
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
