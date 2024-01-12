@@ -34,8 +34,7 @@ class _BirthdayScreenState extends ConsumerState<BirthdayScreen> {
 
   void _onNextTap() {
     SignUpViewModel readResult = ref.read(signUpProvider.notifier);
-    readResult.signUp();
-    // context.goNamed(InterestsScreen.routeName);
+    readResult.signUp(context);
   }
 
   void _setTextFieldDate(DateTime date) {

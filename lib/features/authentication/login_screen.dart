@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_form_screen.dart';
+import 'package:tiktok_clone/features/authentication/view%20models/social_auth_view_model.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
+import 'package:tiktok_clone/generated/l10n.dart';
 
 import '../../utilities.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends ConsumerWidget {
   static String routeURL = "/login";
   static String routeName = "login";
   const LoginScreen({super.key});
@@ -27,7 +30,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -37,15 +40,21 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               Gaps.v80,
-              Text(
+              const Text(
                 "Log in to TikTok",
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: TextStyle(
+                  fontSize: Sizes.size24,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               Gaps.v20,
-              const Opacity(
+              Opacity(
                 opacity: 0.7,
                 child: Text(
-                  "Manage your account, check notifications, comment on videos, and more.",
+                  S.of(context).loginInSubtitle,
+                  style: const TextStyle(
+                    fontSize: Sizes.size16,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -57,9 +66,14 @@ class LoginScreen extends StatelessWidget {
                     text: "Use phone / email / username"),
               ),
               Gaps.v16,
-              const AuthButton(
-                  icon: FaIcon(FontAwesomeIcons.apple),
-                  text: "Continue with Apple"),
+              GestureDetector(
+                onTap: () => ref
+                    .read(socialAuthViewModel.notifier)
+                    .gitHubSignIn(context),
+                child: const AuthButton(
+                    icon: FaIcon(FontAwesomeIcons.github),
+                    text: "Continue with Github"),
+              ),
             ],
           ),
         ),

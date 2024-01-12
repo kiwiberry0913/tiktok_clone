@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/constants/gaps.dart';
 import 'package:tiktok_clone/constants/sizes.dart';
 import 'package:tiktok_clone/features/authentication/login_screen.dart';
+import 'package:tiktok_clone/features/authentication/view%20models/social_auth_view_model.dart';
 import 'package:tiktok_clone/features/authentication/widgets/auth_button.dart';
 import 'package:tiktok_clone/features/authentication/widgets/username_screen.dart';
 import 'package:tiktok_clone/generated/l10n.dart';
 import 'package:tiktok_clone/utilities.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends ConsumerWidget {
   static String routeURL = "/";
   static String routeName = "signUp";
   const SignUpScreen({super.key});
@@ -28,7 +30,7 @@ class SignUpScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final isDark = isDarkMode(context);
     return OrientationBuilder(
       builder: (context, orientation) {
@@ -41,9 +43,9 @@ class SignUpScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Gaps.v80,
-                  Text(
-                    S.of(context).signUpTitle("TikTok", DateTime.now()),
-                    style: const TextStyle(
+                  const Text(
+                    ("Sign Up for TikTok"),
+                    style: TextStyle(
                       fontSize: Sizes.size24,
                       fontWeight: FontWeight.w700,
                     ),
@@ -69,8 +71,8 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     Gaps.v16,
                     AuthButton(
-                        icon: const FaIcon(FontAwesomeIcons.apple),
-                        text: S.of(context).signInAppleButton),
+                        icon: const FaIcon(FontAwesomeIcons.github),
+                        text: S.of(context).signInGitHubButton),
                   ],
                   if (orientation == Orientation.landscape)
                     Row(
@@ -85,9 +87,14 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         Gaps.h16,
                         Expanded(
-                          child: AuthButton(
-                              icon: const FaIcon(FontAwesomeIcons.apple),
-                              text: S.of(context).signInAppleButton),
+                          child: GestureDetector(
+                            onTap: () => ref
+                                .read(socialAuthViewModel.notifier)
+                                .gitHubSignIn(context),
+                            child: const AuthButton(
+                                icon: FaIcon(FontAwesomeIcons.github),
+                                text: "Continue with Github"),
+                          ),
                         ),
                       ],
                     ),

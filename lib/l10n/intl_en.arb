@@ -5,11 +5,11 @@
     "placeholders": {
       "nameOfTheApp": {
         "type": "String",
-        "example": "TikTok" 
+        "example": "TikTok"
       },
-    "when": {
-      "type":"DateTime",
-      "format": "y"
+      "when": {
+        "type": "DateTime",
+        "format": "y"
       }
     }
   },
@@ -57,5 +57,6 @@
         "format": "compact"
       }
     }
-  }
+  },
+  "LoginInSubtitle": "Manage your account, check notifications, comment on videos, and more."
 }

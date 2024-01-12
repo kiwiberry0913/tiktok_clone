@@ -118,8 +118,8 @@ class _PasswordScreenState extends ConsumerState<PasswordScreen> {
                         onTap: _toggleObscureText,
                         child: FaIcon(
                           _obscureText
-                              ? FontAwesomeIcons.eyeSlash
-                              : FontAwesomeIcons.eye,
+                              ? FontAwesomeIcons.eye
+                              : FontAwesomeIcons.eyeSlash,
                           color: Colors.grey.shade500,
                           size: Sizes.size20,
                         ),

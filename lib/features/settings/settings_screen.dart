@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone/features/authentication/repos/authentication_repo.dart';
 import 'package:tiktok_clone/features/videos/view_models/playback_config_vm.dart';
 
@@ -90,55 +91,26 @@ class SettingsScreen extends ConsumerWidget {
             subtitle: const Text("I need to know!"),
           ),
           ListTile(
-            title: const Text(
-              "Logout iOS",
-              style: TextStyle(
-                color: Colors.red,
-              ),
-            ),
+            title: const Text("Logout"),
+            textColor: Colors.red,
             onTap: () {
               showCupertinoDialog(
                 context: context,
                 builder: (context) => CupertinoAlertDialog(
                   title: const Text("Are you sure?"),
-                  content: const Text("Please don't go..."),
+                  content: const Text("Please don't gooooooooooo..."),
                   actions: [
                     CupertinoDialogAction(
-                      onPressed: () => Navigator.of(context).pop(),
-                      child: const Text(
-                        "No",
-                      ),
-                    ),
-                    CupertinoDialogAction(
-                      onPressed: () => Navigator.of(context).pop(),
-                      isDestructiveAction: true,
-                      child: const Text(
-                        "Yes",
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-          ),
-          ListTile(
-            title: const Text("Logout iOS / bottom bar"),
-            textColor: Colors.red,
-            onTap: () {
-              showCupertinoModalPopup(
-                context: context,
-                builder: (context) => CupertinoActionSheet(
-                  title: const Text("Are you sure?"),
-                  message: const Text("Please don't gooooooooooo..."),
-                  actions: [
-                    CupertinoActionSheetAction(
                       isDefaultAction: true,
                       onPressed: () => Navigator.of(context).pop(),
                       child: const Text("Don't logout"),
                     ),
-                    CupertinoActionSheetAction(
+                    CupertinoDialogAction(
+                      onPressed: () {
+                        ref.read(authRepo).signOut;
+                        context.go("/");
+                      },
                       isDestructiveAction: true,
-                      onPressed: () => ref.read(authRepo).signOut(),
                       child: const Text("Yes"),
                     ),
                   ],

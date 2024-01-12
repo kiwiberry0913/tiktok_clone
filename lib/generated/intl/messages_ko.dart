@@ -30,6 +30,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "LoginInSubtitle": MessageLookupByLibrary.simpleMessage(
+            "Manage your account, check notifications, comment on videos, and more."),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("가입한 적 있으세요?"),
         "commentCount": m0,

@@ -6,5 +6,6 @@
   "logIn": "로그인",
   "likeCount": "{value}",
   "commentCount": "{value}",
-  "numberOfCommentsHeader": "22796 Comments"
+  "numberOfCommentsHeader": "22796 Comments",
+  "LoginInSubtitle": "Manage your account, check notifications, comment on videos, and more."
 }

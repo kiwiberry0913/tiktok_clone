@@ -83,6 +83,16 @@ class S {
     );
   }
 
+  /// `Manage your account, check notifications, comment on videos, and more.`
+  String get loginInSubtitle {
+    return Intl.message(
+      'Manage your account, check notifications, comment on videos, and more.',
+      name: 'loginInSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Use email and password`
   String get emailPasswordButton {
     return Intl.message(
@@ -94,10 +104,10 @@ class S {
   }
 
   /// `Continue with Apple`
-  String get signInAppleButton {
+  String get signInGitHubButton {
     return Intl.message(
-      'Continue with Apple',
-      name: 'signInAppleButton',
+      'Continue with Github',
+      name: 'signInGitHubButton',
       desc: '',
       args: [],
     );
@@ -131,7 +141,7 @@ class S {
     final String valueString = valueNumberFormat.format(value);
 
     return Intl.message(
-      '$valueString',
+      valueString,
       name: 'likeCount',
       desc: 'number of likes a video has recevied',
       args: [valueString],
@@ -146,7 +156,7 @@ class S {
     final String valueString = valueNumberFormat.format(value);
 
     return Intl.message(
-      '$valueString',
+      valueString,
       name: 'commentCount',
       desc: 'number of comments a video has recevied',
       args: [valueString],
@@ -161,7 +171,7 @@ class S {
     final String valueString = valueNumberFormat.format(value);
 
     return Intl.message(
-      '$valueString',
+      valueString,
       name: 'numberOfCommentsHeader',
       desc: 'header for number of comments in comments tab',
       args: [valueString],
