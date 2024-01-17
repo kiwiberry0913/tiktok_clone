@@ -3,16 +3,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:tiktok_clone/features/users/view_models/avatar_view_model.dart';
 
 class Avatar extends ConsumerWidget {
   const Avatar({
     super.key,
     required this.name,
+    required this.hasAvatar,
+    required this.uid,
   });
 
   final String name;
+  final bool hasAvatar;
+  final String uid;
 
-  Future<void> _onAvatarTap() async {
+  Future<void> _onAvatarTap(WidgetRef ref) async {
     final xfile = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       imageQuality: 40,
@@ -21,21 +26,36 @@ class Avatar extends ConsumerWidget {
     );
     if (xfile != null) {
       final file = File(xfile.path);
+      ref.watch(avatarProvider.notifier).uploadAvatar(file);
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading = ref.watch(avatarProvider).isLoading;
     return GestureDetector(
-      onTap: _onAvatarTap,
-      child: CircleAvatar(
-        radius: 50,
-        foregroundColor: Colors.blueGrey.shade400,
-        backgroundImage: const NetworkImage(
-          "https://images.unsplash.com/photo-1682823545338-96b6ac5802da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80",
-        ),
-        child: Text(name),
-      ),
+      onTap: isLoading ? null : () => _onAvatarTap(ref),
+      child: isLoading
+          ? Container(
+              width: 50,
+              height: 50,
+              alignment: Alignment.center,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+              ),
+              child: const CircularProgressIndicator(),
+            )
+          : CircleAvatar(
+              radius: 50,
+              foregroundColor: Colors.blueGrey.shade400,
+              backgroundImage: hasAvatar
+                  ? NetworkImage(
+                      "https://firebasestorage.googleapis.com/v0/b/tiktok-tiktok-clone.appspot.com/o/avatars%2F$uid?alt=media&haha=${DateTime.now().toString()}",
+                      // end of url tricks Flutter from saving the intial url to cache, makes Flutter think it is seeing a brand new url
+                    )
+                  : null,
+              child: Text(name),
+            ),
     );
   }
 }

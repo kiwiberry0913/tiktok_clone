@@ -12,10 +12,6 @@ class UsersViewModel extends AsyncNotifier<UserProfileModel> {
 
   @override
   FutureOr<UserProfileModel> build() async {
-    await Future.delayed(
-      const Duration(seconds: 10),
-    );
-
     _usersRepository = ref.read(userRepo);
     _authenticationRepository = ref.read(authRepo);
 
@@ -40,9 +36,19 @@ class UsersViewModel extends AsyncNotifier<UserProfileModel> {
       uid: credential.user!.uid,
       bio: "undefined",
       link: "undefined",
+      hasAvatar: false,
     );
     await _usersRepository.createProfile(profile);
     state = AsyncValue.data(profile);
+  }
+
+  // method to tell our UsersViewModel that the user has an avatar image
+  // this method should update the state above...hasAvatar will become true
+  // and it should send that data to Firebase
+  Future<void> onAvatarUpload() async {
+    if (state.value == null) return;
+    state = AsyncValue.data(state.value!.copyWith(hasAvatar: true));
+    await _usersRepository.updateUser(state.value!.uid, {"hasAvatar": true});
   }
 }
 

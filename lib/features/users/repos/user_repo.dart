@@ -26,6 +26,10 @@ class UserRepository {
         "avatars/$fileName"); // first makes space for a file in the Firebase storage, but there is no file yet
     await fileRef.putFile(file); // this puts the file in Firebase storage
   }
+
+  Future<void> updateUser(String uid, Map<String, dynamic> data) async {
+    await _db.collection("users").doc(uid).update(data);
+  }
 }
 
 // exposes the class
