@@ -72,7 +72,7 @@ class SignUpScreen extends ConsumerWidget {
                     Gaps.v16,
                     AuthButton(
                         icon: const FaIcon(FontAwesomeIcons.github),
-                        text: S.of(context).signInGitHubButton),
+                        text: S.of(context).signInGithubButton),
                   ],
                   if (orientation == Orientation.landscape)
                     Row(

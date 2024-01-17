@@ -83,16 +83,6 @@ class S {
     );
   }
 
-  /// `Manage your account, check notifications, comment on videos, and more.`
-  String get loginInSubtitle {
-    return Intl.message(
-      'Manage your account, check notifications, comment on videos, and more.',
-      name: 'loginInSubtitle',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Use email and password`
   String get emailPasswordButton {
     return Intl.message(
@@ -103,11 +93,11 @@ class S {
     );
   }
 
-  /// `Continue with Apple`
-  String get signInGitHubButton {
+  /// `Continue with Github`
+  String get signInGithubButton {
     return Intl.message(
       'Continue with Github',
-      name: 'signInGitHubButton',
+      name: 'signInGithubButton',
       desc: '',
       args: [],
     );
@@ -175,6 +165,16 @@ class S {
       name: 'numberOfCommentsHeader',
       desc: 'header for number of comments in comments tab',
       args: [valueString],
+    );
+  }
+
+  /// `Manage your account, check notifications, comment on videos, and more.`
+  String get LoginInSubtitle {
+    return Intl.message(
+      'Manage your account, check notifications, comment on videos, and more.',
+      name: 'LoginInSubtitle',
+      desc: '',
+      args: [],
     );
   }
 }

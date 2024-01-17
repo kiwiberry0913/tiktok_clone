@@ -51,7 +51,7 @@ class LoginScreen extends ConsumerWidget {
               Opacity(
                 opacity: 0.7,
                 child: Text(
-                  S.of(context).loginInSubtitle,
+                  S.of(context).LoginInSubtitle,
                   style: const TextStyle(
                     fontSize: Sizes.size16,
                   ),

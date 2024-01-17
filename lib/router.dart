@@ -18,8 +18,8 @@ final routerProvider = Provider((ref) {
     redirect: (context, state) {
       final isLoggedIn = ref.read(authRepo).isLoggedIn;
       if (!isLoggedIn) {
-        if (state.subloc != SignUpScreen.routeURL &&
-            state.subloc != LoginScreen.routeURL) {
+        if (state.matchedLocation != SignUpScreen.routeURL &&
+            state.matchedLocation != LoginScreen.routeURL) {
           return SignUpScreen.routeURL;
         }
       }
@@ -45,7 +45,7 @@ final routerProvider = Provider((ref) {
         name: MainNavigationScreen.routeName,
         path: "/:tab(home|discover|inbox|profile)",
         builder: (context, state) {
-          final tab = state.params["tab"]!;
+          final tab = state.pathParameters["tab"]!;
           return MainNavigationScreen(tab: tab);
         },
       ),
@@ -63,7 +63,7 @@ final routerProvider = Provider((ref) {
             name: ChatDetailScreen.routeName,
             path: ChatDetailScreen.routeURL,
             builder: (context, state) {
-              final chatId = state.params["chatId"]!;
+              final chatId = state.pathParameters["chatId"]!;
               return ChatDetailScreen(chatId: chatId);
             },
           ),

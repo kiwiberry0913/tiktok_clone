@@ -43,8 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "logIn": MessageLookupByLibrary.simpleMessage("Log in"),
         "loginTitle": m2,
         "numberOfCommentsHeader": m3,
-        "signInAppleButton":
-            MessageLookupByLibrary.simpleMessage("Continue with Apple"),
+        "signInGithubButton":
+            MessageLookupByLibrary.simpleMessage("Continue with Github"),
         "signUpSubtitle": MessageLookupByLibrary.simpleMessage(
             "Create a profile, follow other accounts, make your own videos, and more."),
         "signUpTitle": m4

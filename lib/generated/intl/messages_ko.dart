@@ -40,7 +40,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "likeCount": m1,
         "logIn": MessageLookupByLibrary.simpleMessage("로그인"),
         "numberOfCommentsHeader": m3,
-        "signInAppleButton": MessageLookupByLibrary.simpleMessage("애플으로 계속하기"),
         "signUpTitle": m4
       };
 }
